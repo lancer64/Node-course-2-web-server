@@ -1,6 +1,8 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const port = process.env.PORT || 3000; //store enviromental variables as key value pairs
+//|| is a default in case there's no port value. 
 
 var app = express();
 
@@ -21,9 +23,9 @@ app.use((req, res, next) => {
 }); //how i register middleware
 //next is used to say when my middleware function is done.
 
-app.use((req, res, next) => {
-	res.render('maintenance.hbs');
-});
+// app.use((req, res, next) => {
+// 	res.render('maintenance.hbs');
+// });
 
 
 app.use(express.static(__dirname + '/public')); //dirname stores the path to my project's directory
@@ -58,7 +60,7 @@ app.get('/bad', (req, res) => {
 	}); 
 });
 
-app.listen(3000, () => {
-	console.log('Server is up port 3000');
+app.listen(port, () => {
+	console.log(`Server is up port ${port}`);
 }); //binds the application to a port of our machine
 
